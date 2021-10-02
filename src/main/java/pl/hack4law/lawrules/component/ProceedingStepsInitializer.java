@@ -39,6 +39,7 @@ public class ProceedingStepsInitializer implements ApplicationListener<ContextRe
     private AvailableStep Create_BAILIFF_ADVANCE_COSTS_ESTIMATION() {
         return AvailableStep.builder()
                 .name(BAILIFF_ADVANCE_COSTS_ESTIMATION)
+                .toComplete(BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR)
                 .deadlineDuration(Duration.of(3, DAYS))
                 .changeOnSuccessful(Arrays.asList(BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR))
                 .changeOnFailed(Arrays.asList(DROPPED_NO_ACTION))
@@ -48,6 +49,7 @@ public class ProceedingStepsInitializer implements ApplicationListener<ContextRe
     private AvailableStep Create_BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR() {
         return AvailableStep.builder()
                 .name(BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR)
+                .toComplete(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR)
                 .deadlineDuration(null)
                 .changeOnSuccessful(Arrays.asList(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR))
                 .build();
@@ -56,6 +58,7 @@ public class ProceedingStepsInitializer implements ApplicationListener<ContextRe
     private AvailableStep Create_BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR() {
         return AvailableStep.builder()
                 .name(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR)
+                .toComplete(CREDITOR_PAID_ADVANCE)
                 .deadlineDuration(Duration.of(14, DAYS))
                 .changeOnSuccessful(Arrays.asList(CREDITOR_PAID_ADVANCE))
                 .changeOnFailed(Arrays.asList(CREDITOR_FAILED_TO_PAY))
@@ -65,6 +68,7 @@ public class ProceedingStepsInitializer implements ApplicationListener<ContextRe
     private AvailableStep Create_CREDITOR_PAID_ADVANCE() {
         return AvailableStep.builder()
                 .name(CREDITOR_PAID_ADVANCE)
+                .toComplete(null)
                 .deadlineDuration(Duration.of(7, DAYS))
 //                .changeOnSuccessful(Arrays.asList(CREDITOR_PAID_ADVANCE))
 //                .changeOnFailed(Arrays.asList(CREDITOR_FAILED_TO_PAY))

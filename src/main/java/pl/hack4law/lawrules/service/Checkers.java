@@ -42,23 +42,23 @@ public class Checkers {
         checkerMap.put(BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR, new IChecker() {
             @Override
             public boolean checkSucceeded(LegalProceeding proceeding, ProceedingStep step) {
-                return proceeding.getProceedingSteps().contains(BAILIFF_ADVANCE_COSTS_SENT_TO_CREDITOR);
-            }
-
-            @Override
-            public boolean checkFailed(LegalProceeding proceeding, ProceedingStep step) {
-                return step.getDateTimeDeadline()!= null ? LocalDateTime.now().isAfter(step.getDateTimeDeadline()) : null;
-            }
-        });
-        checkerMap.put(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR, new IChecker() {
-            @Override
-            public boolean checkSucceeded(LegalProceeding proceeding, ProceedingStep step) {
                 return proceeding.getProceedingSteps().contains(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR);
             }
 
             @Override
             public boolean checkFailed(LegalProceeding proceeding, ProceedingStep step) {
-                return step.getDateTimeDeadline()!= null ? LocalDateTime.now().isAfter(step.getDateTimeDeadline()) : null;
+                return step.getDateTimeDeadline() != null && LocalDateTime.now().isAfter(step.getDateTimeDeadline());
+            }
+        });
+        checkerMap.put(BAILIFF_ADVANCE_COSTS_RECEIVED_BY_CREDITOR, new IChecker() {
+            @Override
+            public boolean checkSucceeded(LegalProceeding proceeding, ProceedingStep step) {
+                return proceeding.getProceedingSteps().contains(CREDITOR_PAID_ADVANCE);
+            }
+
+            @Override
+            public boolean checkFailed(LegalProceeding proceeding, ProceedingStep step) {
+                return step.getDateTimeDeadline() != null && LocalDateTime.now().isAfter(step.getDateTimeDeadline());
             }
         });
     }

@@ -46,10 +46,13 @@ public class LegalProceedingService {
                 .map(name -> {
                     return proceedingAvailableStepRepository.findByName(name).orElse(null);
                 }).filter(Objects::nonNull)
-                .map(availableStep -> ProceedingStep.builder()
-                        .dateTimeDeadline(availableStep.getDeadlineDuration()!= null ? LocalDateTime.now().plus(availableStep.getDeadlineDuration()): null)
-                        .name(availableStep.getName())
-                        .build()).collect(Collectors.toList());
+                .map(availableStep -> {
+                    ProceedingStep step = ProceedingStep.builder()
+                            .dateTimeDeadline(availableStep.getDeadlineDuration()!= null ? LocalDateTime.now().plus(availableStep.getDeadlineDuration()): null)
+                            .name(availableStep.getName())
+                            .build();
+                    return proceedingStepRepository.save(step);
+                }).collect(Collectors.toList());
     }
 
     public List<LegalProceeding> getProceedings(Account accountFromPrincipal) {
@@ -103,6 +106,20 @@ public class LegalProceedingService {
 
         proceeding.getProceedingSteps().addAll(getAvailableSteps(stepsCompleted));
         legalProceedingRepository.save(proceeding);
+    }
+
+    public void complete(String id, String stepId) {
+        LegalProceeding proceeding = getProceeding(id);
+        for (ProceedingStep proceedingStep : proceeding.getProceedingSteps()) {
+            if (proceedingStep.getId().equals(stepId)){
+                proceedingStep.setDateTimeCompleted(LocalDateTime.now());
+                proceedingStepRepository.save(proceedingStep);
+
+                proceeding.getProceedingSteps().addAll(getAvailableSteps(proceedingAvailableStepRepository.findByName(proceedingStep.getName()).orElse(null).getChangeOnSuccessful()));
+                legalProceedingRepository.save(proceeding);
+                return;
+            }
+        }
     }
 
 //    public List<AnonymizedDocumentDto> getDocuments(boolean shared, Account currentUser){

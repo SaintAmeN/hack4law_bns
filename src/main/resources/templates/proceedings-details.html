@@ -127,7 +127,7 @@
                             <td th:text="${step.getDateTimeCompleted()==null ? 'N/A' : step.getDateTimeCompleted()}"></td>
                             <td th:text="${step.getDateTimeDeadline() == null ? '' : step.getDateTimeDeadline().toLocalDate()}"></td>
                             <td>
-                                <a th:href="@{'/legalproceedings/details/'+${step.getId()}}">Details</a>
+                                <a th:if="${step.getDateTimeCompleted()==null}" th:href="@{/legalproceedings/complete(id=${proceeding.id},stepId=${step.getId()})}">Complete</a>
                             </td>
                         </tr>
                         </tbody>
@@ -141,7 +141,7 @@
                        th:href="@{/legalproceedings/action/add}">
                         <i class="material-icons">add</i>
                     </a>
-                    <p class="paragraph-value paragraph-bigger-bigger left-align col-md-9">Proceeding notes: </p>
+                    <p class="paragraph-value paragraph-bigger-bigger left-align col-md-9">Proceeding notes/comments: </p>
                 </div>
                 <div class="d-flex col-md-12">
                     <table>

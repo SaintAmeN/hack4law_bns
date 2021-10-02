@@ -64,5 +64,11 @@ public class ProceedingsController {
         return "redirect:/legalproceedings/details/" + legalproceedingid;
     }
 
+    @GetMapping("/complete")
+    public String complete(String id, String stepId) {
+        legalProceedingService.complete(id,stepId);
+        return "redirect:/legalproceedings/details/" + id;
+    }
+
 
 }

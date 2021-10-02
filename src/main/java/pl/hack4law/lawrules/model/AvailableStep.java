@@ -22,6 +22,7 @@ public class AvailableStep {
     private String id;
 
     private StepName name;
+    private StepName toComplete;
     private Duration deadlineDuration;
 
     private List<StepName> changeOnSuccessful;
