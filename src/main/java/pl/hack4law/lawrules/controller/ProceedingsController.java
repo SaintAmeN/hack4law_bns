@@ -45,8 +45,9 @@ public class ProceedingsController {
     }
 
     @GetMapping("/details/{id}")
-    public String getDetailsOfProceeding(@PathVariable(name = "id") String id, Model model, Principal principal) {
+    public String getDetailsOfProceeding(@PathVariable(name = "id") String id, Model model, Principal principal, @RequestParam(value = "errorMsg", required = false) String errorMsg) {
         LegalProceeding proceeding = legalProceedingService.getProceeding(id);
+        model.addAttribute("errorMsg", errorMsg);
         model.addAttribute("proceeding", proceeding);
         model.addAttribute("owner", proceeding.getCreator() == accountService.getAccountFromPrincipal(principal));
         return "proceedings-details";
@@ -58,10 +59,39 @@ public class ProceedingsController {
         return "redirect:/legalproceedings";
     }
 
+    @GetMapping("/note/{id}")
+    public String noteForm(Model model, @PathVariable("id") String id) {
+        model.addAttribute("id", id);
+        return "note-form";
+    }
+
+    @PostMapping("/note")
+    public String submitNote(String notes, String legalProceedingsId, Principal principal) {
+        legalProceedingService.addNote(legalProceedingsId, notes, accountService.getAccountFromPrincipal(principal));
+        return "redirect:/legalproceedings/details/" + legalProceedingsId;
+    }
+
     @PostMapping("/advance")
     public String submitForm(double advance, String legalproceedingid) {
         legalProceedingService.setAdvance(legalproceedingid, advance);
         return "redirect:/legalproceedings/details/" + legalproceedingid;
+    }
+
+    @GetMapping("/complete")
+    public String complete(String id, String stepId) {
+        String errorMsg = "";
+        try {
+            legalProceedingService.complete(id, stepId);
+        } catch (UnsupportedOperationException unsupportedOperationException) {
+            errorMsg = "?errorMsg=This task cannot be closed yet";
+        }
+        return "redirect:/legalproceedings/details/" + id + errorMsg;
+    }
+
+    @GetMapping("/fail")
+    public String fail(String id, String stepId) {
+        legalProceedingService.fail(id, stepId);
+        return "redirect:/legalproceedings/details/" + id;
     }
 
 

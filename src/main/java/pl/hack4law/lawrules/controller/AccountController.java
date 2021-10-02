@@ -23,38 +23,4 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/register")
-    public String registrationForm(Model model, Account account) {
-        model.addAttribute("newAccount", account);
-
-        return "registration-form";
-    }
-
-    @PostMapping("/register")
-    public String register(@Valid Account account,
-                           BindingResult result,
-                           String passwordConfirm,
-                           Model model) {
-
-        if(result.hasErrors()){
-            return registrationError(model, account, result.getFieldError().getDefaultMessage());
-        }
-
-        if (!account.getPassword().equals(passwordConfirm)) {
-            return registrationError(model, account, "Passwords do not match.");
-        }
-
-        if(!accountService.register(account)){
-            return registrationError(model, account, "User with given username already exists.");
-        }
-
-        return "redirect:/login";
-    }
-
-    private String registrationError(Model model, Account account, String message) {
-        model.addAttribute("newAccount", account);
-        model.addAttribute("errorMessage", message);
-
-        return "registration-form";
-    }
 }

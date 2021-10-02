@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Legal Proceeding note form</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container center-align">
+    <div class="row card col-12 form-container ">
+        <div class="col-md-12 row">
+            <div class="col-md-9 left-align">
+                <h4>Legal Proceeding note form</h4>
+            </div>
+        </div>
+        <div class="col-md-12 align-center">
+            <form th:action="@{/legalproceedings/note}" method="post">
+                <input th:type="text" th:value="${id}" hidden th:name="legalProceedingsId">
+                <div class="row col-12 form-container ">
+                    <div class="row col-md-12">
+                        <p>You can write comments to make notes about proceedings.</p>
+                    </div>
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex input-field col-md-12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="notes" type="text"  name="notes" class="materialize-textarea"></textarea>
+                            <label for="notes">Proceeding notes/comments:</label>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 form-button-row">
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-warning col-12">Reset</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary col-12">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

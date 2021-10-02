@@ -13,7 +13,10 @@ public class AddLegalProceedingRequest {
 
     private String creditorName;
     private String creditorEmail;
+    private String creditorAccountNumber;
+
     private String debtorName;
     private String debtorEmail;
+    private String debtorAccountNumber;
 
 }
