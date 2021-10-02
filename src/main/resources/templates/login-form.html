@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login form</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body >
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container center-align">
+    <form th:action="@{/login}" method="post">
+        <div class="row card col-12 form-container ">
+            <div class="col-md-12 left-align">
+                <h3>Login form:</h3>
+            </div>
+            <div class="row col-md-12 form-input-row">
+                <div class="input-field offset-2 col-md-8">
+                    <input id="username" type="text" class="validate" th:name="username">
+                    <label for="username">Username:</label>
+                </div>
+            </div>
+            <div class="row col-md-12 form-input-row">
+                <div class="input-field offset-2 col-md-8">
+                    <input id="password" type="password" class="validate" th:name="password">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row col-md-12 form-button-row">
+                <div class="col-6">
+                    <button type="reset" class="btn btn-warning col-12">Reset</button>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary col-12">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

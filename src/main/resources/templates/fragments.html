@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="link-styles">
+        <link rel="stylesheet"
+              th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}"/>
+        <link rel="stylesheet"
+              th:href="@{/css/styles.css}"/>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <!-- Compiled and minified CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" >
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="navigator">
+    <nav class="site-header sticky-top py-1">
+        <div class="container d-flex flex-row flex-fill header-container">
+            <div class="d-flex flex-row flex-grow-1">
+                <a class="d-none font-logo d-md-inline-block vert-center navigator-button header-button" href="#">
+                    Law Rules
+                </a>
+            </div>
+            <div class="d-flex flex-row-reverse flex-grow-1">
+                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+<!--                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated() && hasRole('ADMIN')" th:href="@{/admin/account/list}">Account list</a>-->
+                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated()" th:href="@{/documents}">Data Center</a>
+                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+<!--                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated() && hasRole('ADMIN')"  th:href="@{/user/register}">Register</a>-->
+
+                <a class="d-none d-md-inline-block vert-center navigator-button header-button" th:href="@{/}">Home</a>
+            </div>
+        </div>
+    </nav>
+</th:block>
+
+<th:block th:fragment="footer">
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md vert-botton">
+                <small class="align-bottom">&nbsp;&copy;Law Rules 2021</small>
+            </div>
+        </div>
+    </footer>
+</th:block>
+
+<th:block th:fragment="scripts">
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').formSelect();
+        });
+        $(document).ready(function() {
+            $('input#input_text, textarea#textarea2').characterCounter();
+        });
+    </script>
+</th:block>
+</body>
+</html>

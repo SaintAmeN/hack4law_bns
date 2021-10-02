@@ -1,0 +1,39 @@
+account:
+  default:
+    roles: USER,ADMIN
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: HACK_4_LAW
+  jpa:
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: law_rules
+  datasource-read:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://pgsql-hack.postgres.database.azure.com:5432/postgres
+    username: pdreclaw@pgsql-hack
+    password: Admin@12
+    initialization-mode: always
+    platform: postgresql
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: ReadHikariPool
+
+presidio:
+  baseurl:
+    analyzer: http://localhost:5001
+    anonymizer: http://localhost:5002
+    imageRedactor: http://localhost:5003
+
+

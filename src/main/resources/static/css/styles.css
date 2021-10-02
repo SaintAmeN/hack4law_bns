@@ -1,0 +1,156 @@
+.html{
+    background-color: #e1fcb6;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.container {
+    max-width: 1520px;
+}
+
+/*
+ * Custom translucent site header
+ */
+a {
+    line-height: 48px !important;
+}
+
+.site-header {
+
+    background-color: #0B5AE0;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.site-header a {
+    color: #fff;
+    transition: ease-in-out color .15s;
+}
+
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        -ms-flex: 1;
+        flex: 1;
+    }
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.form-container {
+    padding: 0 12px 0 12px;
+    align-items: center;
+}
+
+.form-input-row {
+    margin: 16px 0 16px 0;
+    padding: 0 5px 0 5px;
+}
+
+.form-button-row {
+    margin: 16px 0 16px 0;
+    padding: 0 5px 0 5px;
+}
+
+.vert-botton {
+    vertical-align: bottom;
+    child-align: bottom;
+    vert-align: bottom;
+}
+
+.list-header-row {
+    background-color: #2993be;
+    padding-top: 2px;
+    padding-bottom: 1px;
+}
+
+.list-data-row{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.list-data-row:nth-child(odd){
+    background-color: #85c2da;
+}
+
+.list-data-row:nth-child(even){
+    background-color: #c5eeff   ;
+}
+.header-container{
+    max-height: 80%;
+}
+
+.header-button{
+    height: inherit;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-left: 10px !important;
+    transition: background-color 1s !important;
+    transition: border-bottom-color 1s !important;
+    transition: border-bottom-width 1s !important;
+}
+
+.header-button:hover{
+    border-bottom: solid 1px red;
+}
+
+.btn-primary{
+    background-color: #669bba;
+}
+
+.vert-center{
+    padding: 4px;
+    margin: auto 0 auto 0 ;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.vert-bottom{
+    margin: auto 0 0 0 ;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.navigator-button:hover{
+    background-color: #0B5AE0;
+}
+.select-wrapper{
+    width: 100%;
+}
+
+.font-logo{
+    font-family: Brush Script, cursive ;
+    font-size: 48px;
+    font-weight: lighter;
+    color: #0DFCD3 !important;
+}

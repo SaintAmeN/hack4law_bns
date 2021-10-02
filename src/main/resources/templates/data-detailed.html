@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datacenter</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container">
+    <h1>Datacenter</h1>
+    <div class="row col-md-12">
+        <div class="row col-md-12 list-header-row">
+            <div class="col-2">Użytkownik</div>
+            <div class="col-1">Ilość zaznaczeń</div>
+            <div class="col-2">Data dodania</div>
+            <div class="col-1">Lokalizacja</div>
+            <div class="col-2">Miniatura</div>
+            <div class="col-2">Czynności</div>
+        </div>
+        <div th:each="dataselection: ${images}" class="row col-md-12 list-data-row">
+            <div class="col-2" th:text="${dataselection.getUsername()}"></div>
+            <div class="col-1" th:text="${dataselection.getTrashCrops().length}"></div>
+            <div class="col-2" th:text="${dataselection.getDatetime()}"></div>
+            <div class="col-1">
+                <small th:text="${dataselection.getGpsPosition().getLat()}"></small>
+                <small th:text="${dataselection.getGpsPosition().getLon()}"></small>
+                <!--todo: tutaj może być wyświetlony adres poza Lat/Lon-->
+            </div>
+            <div class="col-2 img-container">
+<!--                <img id="photo" class="img-icon"-->
+<!--                     th:src="@{'data:image/png;base64,'+${dataselection.getBaseEncodedPhoto()}}" alt="photo"/>-->
+            </div>
+            <div class="col-2">
+                <form id="update-dataimage-validation">
+                    <div hidden id="dataimage-id" th:text="${dataselection.getId()}"></div>
+                    <button th:type="submit" class="btn btn-danger" th:onclick="fire_request([[${dataselection.getId()}]]);"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

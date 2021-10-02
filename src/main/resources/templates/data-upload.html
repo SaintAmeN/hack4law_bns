@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Form</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container center-align">
+    <div class="row card col-12 form-container ">
+        <div class="col-md-12 row">
+            <div class="col-md-9 left-align">
+                <h4>Document Form</h4>
+            </div>
+        </div>
+        <div class="col-md-12 align-center">
+            <form th:action="@{/documents}" method="post" th:object="${uploadRequest}" enctype="multipart/form-data">
+                <div class="row col-12 form-container ">
+                    <div class="row col-md-12">
+                        <p>Please provide document name and upload file.</p>
+                    </div>
+                    <div class="d-flex flex-column offset-1 col-md-10">
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-6">
+                                <input id="document-name" type="text" class="validate" th:field="*{documentName}">
+                                <label for="document-name">Name:</label>
+                            </div>
+                            <div class="d-flex input-field col-md-4">
+                                <select id="language" class="col-md-12" th:field="*{language}">
+                                    <option th:each="lang: ${languages}" th:value="${lang}" th:text="${lang}" th:selected="${uploadRequest.getLanguage() == lang}"></option>
+                                </select>
+                                <label>Share document:</label>
+                            </div>
+                            <div class="d-flex input-field col-md-2">
+                                <select id="allowShared" class="col-md-12" th:field="*{allowShared}">
+                                    <option value="true" th:selected="*{allowShared!= null && allowShared}">Yes</option>
+                                    <option value="false" th:selected="*{allowShared!= null && !allowShared}">No</option>
+                                </select>
+                                <label>Share document:</label>
+                            </div>
+                        </div>
+                        <div class="d-flex input-field file-field col-md-12">
+                            <div class="btn col-md-4">
+                                <span>Document file:</span>
+                                <input type="file"  th:field="*{document}" th:checked="*{document}">
+                            </div>
+                            <div class="file-path-wrapper col-md-8">
+                                <input disabled class="file-path validate" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 form-button-row">
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-warning col-12">Reset</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary col-12">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>
