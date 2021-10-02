@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Legal proceedings</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container center-align">
+    <div class="row card col-12 form-container ">
+        <div class="col-md-12 row">
+            <div class="col-md-9 left-align">
+                <h3>Legal proceedings</h3>
+            </div>
+            <div class="col-md-3 vert-center right-align">
+                <a class="btn-floating btn-large waves-effect waves-light red vert-bottom"
+                   th:href="@{/legalproceedings/add}">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12 align-center">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Entities</th>
+                    <th>Claim</th>
+                    <th>Created</th>
+                    <th>State</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="legal_proceeding: ${proceedings}">
+                    <td th:text="${legal_proceeding.getId()}"></td>
+                    <td th:text="${legal_proceeding.getName()}"></td>
+                    <td th:text="${legal_proceeding.getEntitiesNames()}"></td>
+                    <td th:text="${legal_proceeding.getClaim()}"></td>
+                    <td th:text="${legal_proceeding.getDateTimeCreated()}"></td>
+                    <td th:text="${legal_proceeding.getState()}"></td>
+                    <td>
+                        <a th:href="@{'/legalproceedings/details/'+${legal_proceeding.getId()}}">Details</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

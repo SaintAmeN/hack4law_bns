@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Form</title>
+    <th:block th:replace="fragments :: link-styles" th:remove="tag"/>
+</head>
+<body>
+<th:block th:replace="fragments :: navigator" th:remove="tag"/>
+<div class="container center-align">
+    <div class="row card col-12 form-container ">
+        <div class="col-md-12 row">
+            <div class="col-md-9 left-align">
+                <h4>Legal Proceeding Submission Form</h4>
+            </div>
+        </div>
+        <div class="col-md-12 align-center">
+            <form th:action="@{/legalproceedings/add}" method="post" th:object="${proceeding}">
+                <div class="row col-12 form-container ">
+                    <div class="row col-md-12">
+                        <p>This form is necessary to start claim proceedings. Please fill all fields.</p>
+                    </div>
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-6">
+                                <input id="document-name" type="text" class="validate" th:field="*{name}">
+                                <label for="document-name">Given proceeding name or identifier:</label>
+                            </div>
+                            <div class="d-flex input-field col-md-6">
+                                <input id="claim" type="number" step="0.01" class="validate" th:field="*{claim}">
+                                <label for="claim">Claim:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex flex-row col-md-12">
+                            <label style="font-weight: bold; font-size: 18px;">Creditor:</label>
+                        </div>
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-6">
+                                <input id="creditorName" type="text" class="validate" th:field="*{creditorName}">
+                                <label for="creditorName">Name:</label>
+                            </div>
+                            <div class="d-flex input-field col-md-6">
+                                <input id="creditorEmail" type="email" class="validate" th:field="*{creditorEmail}">
+                                <label for="creditorEmail">Email:</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex flex-row col-md-12">
+                            <label style="font-weight: bold; font-size: 18px;">Debtor:</label>
+                        </div>
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-6">
+                                <input id="debtorName" type="text" class="validate" th:field="*{debtorName}">
+                                <label for="debtorName">Name:</label>
+                            </div>
+                            <div class="d-flex input-field col-md-6">
+                                <input id="debtorEmail" type="email" class="validate" th:field="*{debtorEmail}">
+                                <label for="debtorEmail">Email:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12 form-button-row">
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-warning col-12">Reset</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary col-12">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments :: footer" th:remove="tag"/>
+<th:block th:replace="fragments :: scripts" th:remove="tag"/>
+</body>
+</html>

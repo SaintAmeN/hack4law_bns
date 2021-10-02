@@ -31,6 +31,7 @@
                 <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
 <!--                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated() && hasRole('ADMIN')" th:href="@{/admin/account/list}">Account list</a>-->
                 <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated()" th:href="@{/documents}">Data Center</a>
+                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated()" th:href="@{/legalproceedings}">Legal Proceedings</a>
                 <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
 <!--                <a class="d-none d-md-inline-block vert-center navigator-button header-button" sec:authorize="isAuthenticated() && hasRole('ADMIN')"  th:href="@{/user/register}">Register</a>-->
 

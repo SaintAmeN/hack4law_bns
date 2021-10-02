@@ -149,8 +149,52 @@ a {
 }
 
 .font-logo{
-    font-family: Brush Script, cursive ;
+    /*font-family: Brush Script, cursive ;*/
     font-size: 48px;
-    font-weight: lighter;
+    font-weight: Bold;
     color: #0DFCD3 !important;
+}
+.paragraph-value{
+    font-size: 16px;
+    font-weight: bold;
+    text-underline: dotted;
+}
+.underlined-row {
+    border-bottom: 1px #aaaaaa solid !important;
+    transition: all 1s !important;
+}
+.underlined-row:hover {
+    border-bottom: 1px #888888 solid !important;
+    background-color: #aaaaaa;
+}
+.paragraph-bigger{
+    font-size: 17px;
+}
+.paragraph-bigger-bigger{
+    font-size: 24px;
+}
+
+.overlined-row{
+    border-Top: 1px #aaaaaa solid !important;
+
+}
+.align-top-children{
+    align-items: flex-start;
+}
+
+.fee-form-border{
+    animation-name: blink;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink{
+    0%{background-color: #ffd6d6 ;}
+    50%{background-color: #ffffff ;}
+    100%{background-color: #ffd6d6 ;}
+}
+@-webkit-keyframes blink {
+    0%{background-color: #ffd6d6 ;}
+    50%{background-color: #ffffff ;}
+    100%{background-color: #ffd6d6 ;}
 }
