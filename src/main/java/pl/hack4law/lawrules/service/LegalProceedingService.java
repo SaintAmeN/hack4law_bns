@@ -56,6 +56,7 @@ public class LegalProceedingService {
                 .changeOnSuccessful(new ArrayList<>(availableStep.getChangeOnSuccessful()))
                 .dateTimeDeadline(availableStep.getDeadlineDuration() != null ? LocalDateTime.now().plus(availableStep.getDeadlineDuration()) : null)
                 .name(availableStep.getName())
+                .createdDate(LocalDateTime.now())
                 .build());
     }
 

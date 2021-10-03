@@ -21,6 +21,7 @@ public class ProceedingStep {
     private String id;
 
     private StepName name;
+    private LocalDateTime createdDate;
     private LocalDateTime dateTimeCompleted;
     private LocalDateTime dateTimeDeadline;
 
