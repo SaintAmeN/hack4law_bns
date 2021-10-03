@@ -45,7 +45,7 @@ public class LegalProceeding {
     }
 
     public String getState(){
-        return isCompleted() ? "Completed" : lastStep.getName().getContentPL();
+        return isCompleted() ? "Completed" : (lastStep!= null ? lastStep.getName().getContentPL() : "Newly created");
     }
 
     public boolean isCompleted(){
@@ -55,7 +55,7 @@ public class LegalProceeding {
     public List<ProceedingStep> remainingSteps(){
         return proceedingSteps.stream()
                 .filter(proceedingStep -> !proceedingStep.getName().isEnding())
-                .filter(proceedingStep -> proceedingStep.getDateTimeCompleted() != null)
+                .filter(proceedingStep -> proceedingStep.getDateTimeCompleted() == null)
                 .collect(Collectors.toList());
     }
 }

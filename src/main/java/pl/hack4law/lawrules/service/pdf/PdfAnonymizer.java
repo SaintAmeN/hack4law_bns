@@ -68,19 +68,20 @@ public class PdfAnonymizer {
 
 
         int i = 0;
-        for (List<TextPositionSequence> tps : tpss) {
-            for (TextPositionSequence hit : tps) {
+//        for (List<TextPositionSequence> tps : tpss) {
+//            for (TextPositionSequence hit : tps) {
                 PDDocument documentWrite = PDDocument.load(new File("file.pdf"));
                 PDPageContentStream contentStream = new PDPageContentStream(documentWrite, documentWrite.getPage(i), PDPageContentStream.AppendMode.APPEND, false);
                 contentStream.setNonStrokingColor(Color.BLACK);
-                contentStream.addRect(hit.textPositions.get(0).getX(), hit.textPositions.get(0).getY(), hit.textPositions.get(hit.textPositions.size()-1).getX()-hit.textPositions.get(0).getX(), 30);
+                contentStream.addRect(50, 50, 100, 30);
+//                contentStream.addRect(hit.textPositions.get(0).getX(), hit.textPositions.get(0).getY(), hit.textPositions.get(hit.textPositions.size()-1).getX()-hit.textPositions.get(0).getX(), 30);
                 contentStream.fill();
                 contentStream.close();
                 documentWrite.save("file.pdf");
                 documentWrite.close();
-            }
-            i++;
-        }
+//            }
+//            i++;
+//        }
 
         return processedDocument.getFile();
     }

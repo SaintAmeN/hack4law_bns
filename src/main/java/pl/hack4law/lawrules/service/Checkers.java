@@ -57,7 +57,7 @@ public class Checkers {
         checkerMap.put(SEND_NOTIFICATION_TO_CREDITOR, new IChecker() {
             @Override
             public boolean canBeCompleted(LegalProceeding proceeding, ProceedingStep step) {
-                return LocalDateTime.now().isAfter(step.getDateTimeCompleted().plusDays(7));
+                return step.getDateTimeCompleted() != null && LocalDateTime.now().isAfter(step.getDateTimeCompleted().plusDays(7));
             }
         });
     }
