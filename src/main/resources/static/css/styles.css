@@ -198,3 +198,28 @@ a {
     50%{background-color: #ffffff ;}
     100%{background-color: #ffd6d6 ;}
 }
+
+.authors-row{
+    align-items: end;
+    text-align: right;
+}
+.align-description{
+    align-items: start;
+    text-align: justify;
+}
+.ul-decorated{
+    align-items: start;
+    padding-left: 15px;
+    margin-left: 15px;
+    text-align: left;
+    list-style: square !important;
+    list-style-type: square !important;
+}
+.li-decorated{
+    padding-left: 15px;
+    margin-left: 15px;
+    align-items: start;
+    text-align: left;
+    list-style: square !important;
+    list-style-type: square !important;
+}
