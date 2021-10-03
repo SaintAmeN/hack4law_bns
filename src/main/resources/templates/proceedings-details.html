@@ -54,10 +54,12 @@
                         <form th:action="@{/legalproceedings/advance}" method="post" class="d-flex flex-row col-md-12">
                             <div class="d-flex input-field col-md-9">
                                 <input hidden name="legalproceedingid" th:value="${proceeding.id}">
-                                <input id="advance_costs" type="number" step="0.01" class="validate" name="advance">
+                                <input id="advance_costs" type="number" step="0.01" class="validate" th:value="0" name="advance">
                                 <label for="advance_costs">Estimated advance costs:</label>
                             </div>
-                            <button type="submit" class="d-flex btn vert-center flex-grow-1 btn-primary col-md-3">Submit</button>
+                            <button type="submit" class="d-flex btn vert-center flex-grow-1 btn-primary col-md-3">
+                                Submit
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -103,12 +105,16 @@
                 </div>
             </div>
             <hr>
+            <div th:if="${errorMsg != null}" class="row col-12 d-flex form-container align-top-children overlined-row">
+                <div class="row col-12 alert alert-warning" role="alert" th:text="${errorMsg}">
+                </div>
+            </div>
             <div class="row col-12 d-flex form-container align-top-children overlined-row">
                 <div class="d-flex col-md-12 row">
-                    <a class="btn-floating waves-effect waves-light red  right-align"
-                       th:href="@{/legalproceedings/action/add}">
-                        <i class="material-icons">add</i>
-                    </a>
+                    <!--                    <a class="btn-floating waves-effect waves-light red  right-align"-->
+                    <!--                       th:href="@{/legalproceedings/action/add}">-->
+                    <!--                        <i class="material-icons">add</i>-->
+                    <!--                    </a>-->
                     <p class="paragraph-value paragraph-bigger-bigger">Execution steps: </p>
                 </div>
                 <div class="d-flex col-md-12">
@@ -127,7 +133,12 @@
                             <td th:text="${step.getDateTimeCompleted()==null ? 'N/A' : step.getDateTimeCompleted()}"></td>
                             <td th:text="${step.getDateTimeDeadline() == null ? '' : step.getDateTimeDeadline().toLocalDate()}"></td>
                             <td>
-                                <a th:if="${step.getDateTimeCompleted()==null}" th:href="@{/legalproceedings/complete(id=${proceeding.id},stepId=${step.getId()})}">Complete</a>
+                                <a th:if="${step.getDateTimeCompleted()==null}"
+                                   th:href="@{/legalproceedings/complete(id=${proceeding.id},stepId=${step.getId()})}">Complete</a>
+                                <svg th:if="${step.getDateTimeCompleted()!=null}" xmlns="http://www.w3.org/2000/svg"
+                                     width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
                             </td>
                         </tr>
                         </tbody>
@@ -141,7 +152,8 @@
                        th:href="@{/legalproceedings/action/add}">
                         <i class="material-icons">add</i>
                     </a>
-                    <p class="paragraph-value paragraph-bigger-bigger left-align col-md-9">Proceeding notes/comments: </p>
+                    <p class="paragraph-value paragraph-bigger-bigger left-align col-md-9">Proceeding
+                        notes/comments: </p>
                 </div>
                 <div class="d-flex col-md-12">
                     <table>
@@ -149,15 +161,14 @@
                         <tr>
                             <th>DateTime</th>
                             <th>Note</th>
+                            <th>Creator</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="action: *{proceedingActions}">
+                        <tr th:each="action: *{getProceedingNotes}">
                             <td th:text="${action.getDateTimeCreated()}"></td>
                             <td th:text="${action.getNote()}"></td>
-                            <td>
-                                <a th:href="@{'/legalproceedings/action/remove/'+${action.getId()}}">Remove</a>
-                            </td>
+                            <td th:text="${action.getUser()}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -168,5 +179,6 @@
 </div>
 <th:block th:replace="fragments :: footer" th:remove="tag"/>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
+
 </body>
 </html>

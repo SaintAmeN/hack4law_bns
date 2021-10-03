@@ -12,11 +12,12 @@ import java.time.LocalDateTime;
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProceedingAction {
+public class ProceedingNote {
 
     @Id
     private String id;
 
     private LocalDateTime dateTimeCreated;
     private String note;
+    private Account user;
 }

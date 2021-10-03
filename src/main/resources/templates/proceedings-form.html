@@ -46,6 +46,12 @@
                                 <label for="creditorEmail">Email:</label>
                             </div>
                         </div>
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-12">
+                                <input id="creditorAccountNumber" type="number" step="1" class="validate" th:field="*{creditorAccountNumber}">
+                                <label for="creditorAccountNumber">Account number:</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="d-flex flex-column col-md-12">
@@ -60,6 +66,12 @@
                             <div class="d-flex input-field col-md-6">
                                 <input id="debtorEmail" type="email" class="validate" th:field="*{debtorEmail}">
                                 <label for="debtorEmail">Email:</label>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row col-md-12">
+                            <div class="d-flex input-field col-md-12">
+                                <input id="debtorAccountNumber" type="number" step="1" class="validate" th:field="*{debtorAccountNumber}">
+                                <label for="debtorAccountNumber">Account number:</label>
                             </div>
                         </div>
                     </div>
@@ -78,5 +90,38 @@
 </div>
 <th:block th:replace="fragments :: footer" th:remove="tag"/>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>
+<script>
+    document.getElementById("creditorAccountNumber").addEventListener("keyup", checkCreditor);
+    document.getElementById("creditorAccountNumber").addEventListener("keydown", checkCreditor);
+    document.getElementById("debtorAccountNumber").addEventListener("keyup", checkDebtor);
+    document.getElementById("debtorAccountNumber").addEventListener("keydown", checkDebtor);
+
+    function testVal(value, elementName) {
+        var regex = /^([a-z0-9]{5,})$/;
+        if(regex.test(value)) {
+            document.getElementById(elementName).classList.remove("valid");
+            document.getElementById(elementName).classList.add("invalid");
+        } else {
+            document.getElementById(elementName).classList.remove("invalid");
+            document.getElementById(elementName).classList.add("valid");
+        }
+    }
+
+    function checkCreditor() {
+        var val = document.getElementById("creditorAccountNumber").value;
+        if(!val || !val.length) {
+            return;
+        }
+        testVal(val, "creditorAccountNumber")
+    }
+
+    function checkDebtor() {
+        var val = document.getElementById("debtorAccountNumber").value;
+        if(!val || !val.length) {
+            return;
+        }
+        testVal(val, "debtorAccountNumber")
+    }
+</script>
 </body>
 </html>

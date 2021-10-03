@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 // creditor wierzyciel
 // debtor dłużnik
 
@@ -33,14 +35,27 @@ public class LegalProceeding {
     private Account creator;
     private LocalDateTime dateTimeCreated;
 
-    private List<ProceedingStep> proceedingSteps;
-    private List<ProceedingAction> proceedingActions;
+    private Set<ProceedingStep> proceedingSteps;
+    private Set<ProceedingNote> proceedingNotes;
+
+    private ProceedingStep lastStep;
 
     public String getEntitiesNames(){
         return String.format("%s / %s", creditor.getName(), debtor.getName());
     }
 
     public String getState(){
-        return "TODO";
+        return isCompleted() ? "Completed" : lastStep.getName().getContentPL();
+    }
+
+    public boolean isCompleted(){
+        return remainingSteps().isEmpty();
+    }
+
+    public List<ProceedingStep> remainingSteps(){
+        return proceedingSteps.stream()
+                .filter(proceedingStep -> !proceedingStep.getName().isEnding())
+                .filter(proceedingStep -> proceedingStep.getDateTimeCompleted() != null)
+                .collect(Collectors.toList());
     }
 }
