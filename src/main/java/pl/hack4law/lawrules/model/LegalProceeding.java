@@ -39,12 +39,22 @@ public class LegalProceeding {
     private Set<ProceedingNote> proceedingNotes;
 
     private ProceedingStep lastStep;
+<<<<<<< HEAD
+=======
+    private boolean markedFailed = false;
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
 
     public String getEntitiesNames(){
         return String.format("%s / %s", creditor.getName(), debtor.getName());
     }
 
     public String getState(){
+<<<<<<< HEAD
+=======
+        if ( markedFailed) {
+            return "Completed unsuccessful";
+        }
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
         return isCompleted() ? "Completed" : (lastStep!= null ? lastStep.getName().getContentPL() : "Newly created");
     }
 

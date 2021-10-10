@@ -15,7 +15,15 @@ public interface IChecker {
     }
 
     default boolean checkFailed(LegalProceeding proceeding, ProceedingStep step){
+<<<<<<< HEAD
         return step.getDateTimeDeadline() != null && LocalDateTime.now().isAfter(step.getDateTimeDeadline());
+=======
+        if (step.getDateTimeDeadline() != null && LocalDateTime.now().isAfter(step.getDateTimeDeadline())){
+            proceeding.setMarkedFailed(true);
+            return true;
+        }
+        return false;
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
     }
 
     default boolean canBeCompleted(LegalProceeding proceeding, ProceedingStep step){

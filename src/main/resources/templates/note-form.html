@@ -16,7 +16,11 @@
         </div>
         <div class="col-md-12 align-center">
             <form th:action="@{/legalproceedings/note}" method="post">
+<<<<<<< HEAD
                 <input th:type="text" th:value="${id}" hidden name="proceedingId">
+=======
+                <input th:type="text" th:value="${id}" hidden th:name="legalProceedingsId">
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
                 <div class="row col-12 form-container ">
                     <div class="row col-md-12">
                         <p>You can write comments to make notes about proceedings.</p>

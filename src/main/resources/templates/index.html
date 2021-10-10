@@ -7,9 +7,49 @@
 </head>
 <body>
 <th:block th:replace="fragments :: navigator" th:remove="tag"/>
-<div class="container">
-    <h1>Hello Szanowna Jury!</h1>
-    <!--todo: do napisania akapit wstępny, o twórcach, oraz o działaniu aplikacji-->
+<div class="container center-align">
+    <div class="row card col-12 form-container">
+        <div class="col-md-12 row">
+            <div class="col-md-9 left-align">
+                <h3>Witamy Wspaniałe Jury!</h3>
+            </div>
+        </div>
+        <div class="col-md-12 align-center">
+            <div class="row col-12 d-flex form-container align-top-children">
+                <div class="d-flex flex-column col-md-8 align-top">
+                    <div class="d-flex flex-row col-md-12 overlined-row">
+                        <p class="paragraph-value paragraph-bigger">Krótko o projekcie: </p>
+                    </div>
+                    <div class="d-flex flex-column col-md-12 ">
+                        <p class="align-description">W naszym projekcie udało nam się zrealizować dwa zadania:</p>
+                        <ul class="ul-decorated">
+                            <li class="li-decorated">Podpowiadanie czynności w postępowaniu egzekucyjnym</li>
+                            <li class="li-decorated">Anonimizacja dokumentów</li>
+                        </ul>
+                        <p class="align-description"> Rozwiązanie pierwsze podpowiada użytkownikowi jak postępować zgodnie z obowiązującymi przepisami prawa podejmując kolejne czynności w sprawie.
+                            Umożliwia egzekucję należności pieniężnych, np. z rachunków bankowych, ruchomości i nieruchomości.
+                            Także wskazuje czynności w przypadku egzekucji w Polsce która wydaje się bezskuteczna gdy dłużnik ukrywa majątek za granicami kraju.
+                            Narzędzie pozwala na zachowanie zgodnie z przepisami prawa i przyspieszenie czynności poprzez przejrzystą prezentację treści.
+                        </p>
+                        <p class="align-description"> W zakładce `Data Anonymization` znajduje się formularz do przesyłania dokumentów i ich anonimizacji. Narzędzie
+                            nie wykorzystuje zewnętrznych serwerów, ale wymaga przesłania pliku do serwera hostującego. Po przesłaniu możliwe jest zakreślenie treści
+                            wrażliwych poprzez automat, a następnie pobranie pliku.
+                        </p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column col-md-4 align-top">
+                    <div class="d-flex flex-row col-md-12 overlined-row">
+                        <p class="paragraph-value paragraph-bigger">Autorzy: </p>
+                    </div>
+                    <div class="d-flex flex-column col-md-12 overlined-row align-right">
+                        <p class="paragraph-value authors-row">Karolina Janikowska</p>
+                        <p class="paragraph-value authors-row">Piotr Recław</p>
+                        <p class="paragraph-value authors-row">Paweł Recław</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <th:block th:replace="fragments :: footer" th:remove="tag"/>
 <th:block th:replace="fragments :: scripts" th:remove="tag"/>

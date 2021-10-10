@@ -66,9 +66,15 @@ public class ProceedingsController {
     }
 
     @PostMapping("/note")
+<<<<<<< HEAD
     public String submitNote(String note, String proceedingId, Principal principal) {
         legalProceedingService.addNote(proceedingId, note, accountService.getAccountFromPrincipal(principal));
         return "redirect:/legalproceedings";
+=======
+    public String submitNote(String notes, String legalProceedingsId, Principal principal) {
+        legalProceedingService.addNote(legalProceedingsId, notes, accountService.getAccountFromPrincipal(principal));
+        return "redirect:/legalproceedings/details/" + legalProceedingsId;
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
     }
 
     @PostMapping("/advance")
@@ -88,5 +94,14 @@ public class ProceedingsController {
         return "redirect:/legalproceedings/details/" + id + errorMsg;
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/fail")
+    public String fail(String id, String stepId) {
+        legalProceedingService.fail(id, stepId);
+        return "redirect:/legalproceedings/details/" + id;
+    }
+
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
 
 }

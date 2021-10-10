@@ -144,4 +144,22 @@ public class LegalProceedingService {
 
         legalProceedingRepository.save(proceeding);
     }
+<<<<<<< HEAD
+=======
+
+    public void fail(String id, String stepId) {
+        LegalProceeding proceeding = getProceeding(id);
+        for (ProceedingStep proceedingStep : proceeding.getProceedingSteps()) {
+            if (proceedingStep.getId().equals(stepId) ) {
+                proceedingStep.setDateTimeCompleted(LocalDateTime.now());
+                proceedingStepRepository.save(proceedingStep);
+                proceeding.setLastStep(proceedingStep);
+                proceeding.setMarkedFailed(true);
+
+                proceeding.getProceedingSteps().addAll(appendStepsWithNames(proceedingAvailableStepRepository.findByName(proceedingStep.getName()).orElse(null).getChangeOnFailed()));
+                legalProceedingRepository.save(proceeding);
+            }
+        }
+    }
+>>>>>>> 87d9cb2c2503b5ffa2cb181459c2404ccec6af72
 }
